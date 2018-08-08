@@ -4,10 +4,7 @@ import glob
 import os
 import sys
 
-from outputs import stdout, stderr
-
-
-__version__ = '2018.8.0'
+from .outputs import stdout, stderr
 
 
 def cat(filenames=[]):
