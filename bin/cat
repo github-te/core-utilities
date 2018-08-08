@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+import argparse
+from os.path import basename
+import sys
+
+import files
+
+
+def arguments():
+    desc = files.cat.__doc__
+    parser = argparse.ArgumentParser(description=desc)
+
+    parser.add_argument('-V', '--version', action='store_true',
+                        help='Display the version number of this program and exit immediately.')
+    parser.add_argument('files', nargs='*', action='store',
+                        help='File names! Use "-" or leave empty to use <stdin>.')
+
+    # REMOVED
+    # -b, --non-blank           numbering non-blank lines
+    # -n, --number              numbering all lines
+    # -s, --squeeze             collapse multiple blank lines into single blank line
+    # -u, --unbuffered          compatibility with UNIX 7th Edition
+    # -v, --visible             make non-printing characters visible 'cept \n and \t
+    # -E, --endings             make \n visible
+    # -e, --endings-with-v      combine -E and -v
+    # -T, --tabs                make \t visible
+    # -t, --tabs-with-v         combine -t and -v
+
+    args = parser.parse_args()
+
+    if args.version:  # handle this much like -h, --help, before anything else
+        print(f'{basename(sys.argv[0])} version {files.__version__}')
+        sys.exit(0)
+
+    return args
+
+
+if __name__ == "__main__":
+    args = arguments()
+    files.cat(args.files)
