@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 
 import argparse
-from os.path import basename, expanduser
+import os
 import sys
 
-sys.path.append(expanduser('~/git/core-utilities/'))
-
-import corpus.files as files
-from corpus import __version__
+try:
+    import corpus
+except ImportError:
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    import corpus
 
 
 def arguments():
-    desc = files.cat.__doc__
+    desc = corpus.files.cat.__doc__
     parser = argparse.ArgumentParser(description=desc)
 
     parser.add_argument('-V', '--version', action='store_true',
@@ -33,7 +34,7 @@ def arguments():
     args = parser.parse_args()
 
     if args.version:  # handle this much like -h, --help, before anything else
-        print(f'{basename(sys.argv[0])} version {__version__}')
+        print(f'{os.path.basename(sys.argv[0])} version {corpus.__version__}')
         sys.exit(0)
 
     return args
@@ -41,4 +42,4 @@ def arguments():
 
 if __name__ == "__main__":
     args = arguments()
-    files.cat(args.files)
+    corpus.files.cat(args.files)
