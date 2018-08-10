@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+
+import argparse
+
+import lexer
+from outputs import stderr
+
+
+def main():
+    args = arguments()
+    characters = ''.join(open(args.file, 'r').readlines())
+    tokens = lexer.lex(characters, lexer.EXPRESSIONS)
+    for token in tokens:
+        q = token.text.replace('\n', '\\n').replace('\t', '\\t')
+        print(f'{token.tag:<12} [{len(q):>3}]|{q}|')
+
+
+def arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('file', action='store', help='File to parse.')
+    return parser.parse_args()
+
+if __name__ == '__main__':
+    main()
