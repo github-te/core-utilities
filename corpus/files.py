@@ -42,6 +42,13 @@ def cat(filenames=[]):
     sys.exit(0)
 
 
+def chgrp(group, files, **options):
+    '''The chgrp utility sets the group ID of the file named by each file
+    operand to the group ID specified by the group operand. It does not
+    follow symbolic links.
+    '''
+
+
 def lines(filename):
     '''Yields lines of file or stdin until EOF or an exception occurs.'''
     if filename == '-':

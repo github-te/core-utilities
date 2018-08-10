@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+import sys
+
+try:
+    import corpus
+except ImportError:
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    import corpus
+
+
+def arguments():
+    desc = corpus.files.chgrp.__doc__
+    parser = argparse.ArgumentParser(description=desc)
+
+    parser.add_argument('-V', '--version', action='store_true',
+                        help='Display the version number of this program and exit immediately.')
+    parser.add_argument('-r', '--recurse', action='store_true',
+                        help='Recurse through sub-directories.')
+    parser.add_argument('-v', '--verbose', action='store_true',
+                        help='output the names of all changed files.')
+    parser.add_argument('-f', '--force', action='store_true',
+                        help='continue despite errors.')
+    parser.add_argument('group', action='store',
+    parser.add_argument('files', nargs='*', action='store',
+                        help='File names! Use "-" or leave empty to use <stdin>.')
+
+    args = parser.parse_args()
+
+    if args.version:  # handle this much like -h, --help, before anything else
+        print(f'{os.path.basename(sys.argv[0])} version {corpus.__version__}')
+        sys.exit(0)
+
+    return args
+
+
+if __name__ == "__main__":
+    args = arguments()
+    corpus.files.chgrp(args)
