@@ -49,7 +49,39 @@ class TokenExpression:
 
 LexToken = namedtuple('MatchToken', 'tag text')
 
+EXPRESSIONS = (
+    ('SPACE',       r'[ \n\t]+'),
+    ('SPACE',       r'#[^\n]*'),
 
+    ('RESERVED',    r'\:='),
+    ('RESERVED',    r'\('),
+    ('RESERVED',    r'\)'),
+    ('RESERVED',    r';'),
+    ('RESERVED',    r'\+'),
+    ('RESERVED',    r'-'),
+    ('RESERVED',    r'\*'),
+    ('RESERVED',    r'/'),
+    ('RESERVED',    r'<='),
+    ('RESERVED',    r'<'),
+    ('RESERVED',    r'>='),
+    ('RESERVED',    r'>'),
+    ('RESERVED',    r'!='),
+    ('RESERVED',    r'='),
+    ('RESERVED',    r'and'),
+    ('RESERVED',    r'or'),
+    ('RESERVED',    r'not'),
+    ('RESERVED',    r'if'),
+    ('RESERVED',    r'then'),
+    ('RESERVED',    r'else'),
+    ('RESERVED',    r'while'),
+    ('RESERVED',    r'do'),
+    ('RESERVED',    r'end'),
+
+    ('INT',         r'[0-9]+'),
+    ('ID',          r'[A-Za-z][A-Za-z0-9_]*'),
+)
+
+"""
 EXPRESSIONS = (
     ('SPACE',    r'([\t ]+)'),
     ('SPACE',    r'(\\\\\n)'),  # backslash at end of line, i.e. "continuation"
@@ -94,7 +126,4 @@ EXPRESSIONS = (
     ('RESERVED', r'([1-9][0-9]*)'),  # int
     ('NAME',  r'([A-Za-z_][A-Za-z_0-9]*)\b'),  # identifier
 )
-
-
-if __name__ == '__main__':
-    main()
+"""
