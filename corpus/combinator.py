@@ -15,7 +15,7 @@ class Result:
 
 class Parser:
     def __call__(self, tokens, index):
-        return None  # over ride!
+        raise ImplementationError('Must be over-ridden')
 
     def __add__(self, other):
         return Concat(self, other)
