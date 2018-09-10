@@ -23,7 +23,7 @@ def arguments():
                         help='output the names of all changed files.')
     parser.add_argument('-f', '--force', action='store_true',
                         help='continue despite errors.')
-    parser.add_argument('group', action='store',
+    parser.add_argument('group', action='store')
     parser.add_argument('files', nargs='*', action='store',
                         help='File names! Use "-" or leave empty to use <stdin>.')
 
